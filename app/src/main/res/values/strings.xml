@@ -2,4 +2,18 @@
     <string name="app_name">Scooter</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="deal_desc">
+        <item>10% off next rental</item>
+        <item>Upcoming Campus Tour at UCL</item>
+        <item>Free 7/11 Coupon</item>
+        <item>Answer our survey to win 100% off your next\nrental!</item>
+    </string-array>
+
+    <string-array name="deal_name">
+        <item>Discount</item>
+        <item>Event</item>
+        <item>Deal</item>
+        <item>Deal</item>
+    </string-array>
 </resources>
