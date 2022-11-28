@@ -26,20 +26,20 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="32dp"
-        android:text="Scooter XXX-UQX"
+        android:backgroundTint="@color/dark_grey"
+        android:text="Scooter UXQ-XIS"
         android:textColor="@color/black"
-        android:textSize="32sp"
+        android:textSize="28sp"
         app:layout_constraintEnd_toStartOf="@+id/settings_button"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:backgroundTint="@color/dark_grey"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="64dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:text="24%"
         android:textColor="@color/black"
         android:textSize="24sp"
@@ -48,20 +48,20 @@
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <!--app:backgroundTint="@null"-->
+    <!--android:textColor="@color/black"-->
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="49dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="40dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
         android:rotation="90"
         android:src="@drawable/ic_baseline_battery_charging_full_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <!--app:backgroundTint="@null"-->
-    <!--android:textColor="@color/black"-->
     <Button
         android:id="@+id/scan_button"
         android:layout_width="0dp"
