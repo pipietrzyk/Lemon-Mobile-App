@@ -114,7 +114,19 @@ public class HomeFragment extends Fragment {
 
     ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
         if (result.getContents() != null) {
-            code.setText(result.getContents());
+            Random r = new Random();
+
+            String randomCode = "";
+
+            for (int i = 0; i < 3; i++) {
+                randomCode += (char)(r.nextInt(26) + 'a');
+            }
+            randomCode += "-";
+            for (int i = 0; i < 3; i++) {
+                randomCode += (char)(r.nextInt(26) + 'a');
+            }
+
+            code.setText(randomCode.toUpperCase());
             random = new Random().nextInt(101);
             String s = String.valueOf(random) + "%";
             bat_percent.setText(s);
