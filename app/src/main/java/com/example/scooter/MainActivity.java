@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
         int itemId = item.getItemId();
         if (itemId == R.id.home) {
             selectedFragment = new HomeFragment();
-        } else if (itemId == R.id.map) {
-            selectedFragment = new MapFragment();
         } else if (itemId == R.id.deals) {
             selectedFragment = new DealsFragment();
         }

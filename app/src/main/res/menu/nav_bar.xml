@@ -5,10 +5,6 @@
         android:id="@+id/home"
         android:icon="@drawable/ic_baseline_home_24"/>
 
-    <item android:title="Map"
-        android:id="@+id/map"
-        android:icon="@drawable/ic_baseline_location_on_24"/>
-
     <item android:title="Deals"
         android:id="@+id/deals"
         android:icon="@drawable/ic_baseline_discount_24"/>
