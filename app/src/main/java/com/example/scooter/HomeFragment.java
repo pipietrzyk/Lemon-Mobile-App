@@ -2,6 +2,7 @@ package com.example.scooter;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,7 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
@@ -85,6 +89,13 @@ public class HomeFragment extends Fragment {
         toScan = v.findViewById(R.id.scan_button);
 
         checkPermission();
+        if (isPermissionGranted) {
+            if (checkGooglePlayServices()) {
+
+            } else {
+                Toast.makeText(getActivity(), "Google Play Services Not Available", Toast.LENGTH_SHORT).show();
+            }
+        }
 
         toSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +113,25 @@ public class HomeFragment extends Fragment {
         });
 
         return v;
+    }
+
+    private boolean checkGooglePlayServices() {
+        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+        int result = googleApiAvailability.isGooglePlayServicesAvailable(getActivity());
+
+        if (result == ConnectionResult.SUCCESS) {
+            return true;
+        } else if (googleApiAvailability.isUserResolvableError(result)) {
+            Dialog dialog = googleApiAvailability.getErrorDialog(getActivity(), result, 201, new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialogInterface) {
+                    Toast.makeText(getActivity(), "User Cancelled Dialog", Toast.LENGTH_SHORT).show();
+                }
+            });
+            dialog.show();
+        }
+
+        return false;
     }
 
     private void checkPermission() {
