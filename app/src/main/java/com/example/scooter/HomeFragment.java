@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -19,6 +20,9 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
@@ -34,11 +38,14 @@ import com.karumi.dexter.listener.single.PermissionListener;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     FloatingActionButton toSettings;
     Button toScan;
     boolean isPermissionGranted;
+
+    MapView mapView;
+    //GoogleMap googleMap;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,10 +95,13 @@ public class HomeFragment extends Fragment {
         toSettings = v.findViewById(R.id.settings_button);
         toScan = v.findViewById(R.id.scan_button);
 
+        mapView = v.findViewById(R.id.mapView);
+
         checkPermission();
         if (isPermissionGranted) {
             if (checkGooglePlayServices()) {
-
+                mapView.getMapAsync(this);
+                mapView.onCreate(savedInstanceState);
             } else {
                 Toast.makeText(getActivity(), "Google Play Services Not Available", Toast.LENGTH_SHORT).show();
             }
@@ -181,4 +191,51 @@ public class HomeFragment extends Fragment {
             }).show();
         }
     });
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        //this.googleMap = googleMap;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mapView.onStart();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mapView.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
 }
