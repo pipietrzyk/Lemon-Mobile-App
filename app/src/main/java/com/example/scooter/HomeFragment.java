@@ -238,4 +238,5 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         super.onLowMemory();
         mapView.onLowMemory();
     }
+
 }
