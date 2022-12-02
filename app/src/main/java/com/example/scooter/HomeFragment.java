@@ -12,10 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
+
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +29,9 @@ public class HomeFragment extends Fragment {
 
     FloatingActionButton toSettings;
     Button toScan;
+    TextView code;
+    TextView bat_percent;
+    int random;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,6 +80,8 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         toSettings = v.findViewById(R.id.settings_button);
         toScan = v.findViewById(R.id.scan_button);
+        code = (TextView) v.findViewById(R.id.code);
+        bat_percent = (TextView) v.findViewById(R.id.bat_percent);
 
         toSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +114,11 @@ public class HomeFragment extends Fragment {
 
     ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
         if (result.getContents() != null) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+            code.setText(result.getContents());
+            random = new Random().nextInt(101);
+            String s = String.valueOf(random) + "%";
+            bat_percent.setText(s);
+            /*AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
             alert.setTitle("Result");
             alert.setMessage(result.getContents());
             alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -114,7 +126,7 @@ public class HomeFragment extends Fragment {
                 public void onClick(DialogInterface dialogInterface, int i) {
                     dialogInterface.dismiss();
                 }
-            }).show();
+            }).show(); */
         }
     });
 }
